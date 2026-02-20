@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreatorOps Event Schema",
+  "description": "Canonical event contract for CreatorOps Lakehouse publishing workflow",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "eventVersion",
+    "occurredAt",
+    "tenant",
+    "entity"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "Globally unique ULID identifier"
+    },
+    "eventType": {
+      "type": "string",
+      "enum": [
+        "draft_created",
+        "chapter_written",
+        "scene_revised",
+        "beta_feedback_received",
+        "submission_sent",
+        "editor_comment",
+        "publish_scheduled",
+        "publish_released",
+        "reader_engagement",
+        "reader_dropoff"
+      ]
+    },
+    "eventVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "type": "object",
+      "properties": {
+        "service": { "type": "string" },
+        "env": { "type": "string" },
+        "region": { "type": "string" },
+        "traceId": { "type": "string" }
+      }
+    },
+    "tenant": {
+      "type": "object",
+      "required": ["tenantId", "authorId"],
+      "properties": {
+        "tenantId": { "type": "string" },
+        "authorId": { "type": "string" },
+        "plan": { "type": "string" }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "required": ["storyId"],
+      "properties": {
+        "seriesId": { "type": "string" },
+        "storyId": { "type": "string" },
+        "chapterId": { "type": "string" },
+        "sceneId": { "type": "string" }
+      }
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "DRAFT",
+        "WRITE",
+        "REVISION",
+        "BETA",
+        "SUBMISSION",
+        "EDIT",
+        "SCHEDULED",
+        "RELEASED",
+        "ENGAGEMENT"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "revisionCount": { "type": "integer" },
+        "wordCount": { "type": "integer" },
+        "engagementScore": { "type": "number" }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

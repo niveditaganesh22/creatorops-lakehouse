@@ -1,0 +1,34 @@
+# --- Python ---
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Spark / Delta local outputs ---
+out/
+*.parquet
+*.crc
+
+# --- Logs ---
+*.log
+
+# --- Secrets / profiles ---
+profiles.yml
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# --- Databricks ---
+.databricks/
