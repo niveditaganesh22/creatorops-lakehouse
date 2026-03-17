@@ -37,6 +37,9 @@ CreatorOps Lakehouse provides a structured, event-driven analytics system that:
 ## Workflow Modeled
 
 The system simulates a realistic publishing pipeline:
+'''
+draft → writing → revision → beta → submission → edit → scheduled → released → engagement
+'''
 
 Reader interaction events:
 - `reader_engagement`
